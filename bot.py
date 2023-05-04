@@ -1,14 +1,15 @@
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler,Filters,MessageHandler
 import os
 
-from main import start
+from main import start,msg
 
 TOKEN = os.environ.get('TOKEN')
 
 def main():
     updater = Updater(TOKEN)
-
-    updater.dispatcher.add_handler(CommandHandler('start', start))
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler('start', start))
+    dp.add_handler(MessageHandler(Filters.update,msg))
 
     updater.start_polling()
     updater.idle()

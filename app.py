@@ -1,12 +1,12 @@
 from flask import Flask, request
 from telegram import Bot, Update
-from telegram.ext import Dispatcher, CommandHandler
-from main import start
+from telegram.ext import Dispatcher, CommandHandler,Filters,MessageHandler
+from main import start,msg
 
 
 
 app = Flask(__name__)
-TOKEN = '5961200046:AAH4p8t9oPXRr9zCbpZMoxUyVP6ZrPKV_rY'
+TOKEN = '5790746885:AAFJusXWRH3yN5CJ9hjKcmHyrzmHVv5A_vY'
 
 bot: Bot = Bot(TOKEN)
 
@@ -30,6 +30,7 @@ def webhookbot():
         update: Update = Update.de_json(data, bot)
 
         dp.add_handler(CommandHandler('start', start))
+        dp.add_handler(MessageHandler(Filters.update,msg))
 
         # process update
         dp.process_update(update)
