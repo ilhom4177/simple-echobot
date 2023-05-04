@@ -9,6 +9,7 @@ def start(update: Update, context: CallbackContext):
 
 def msg(update: Update, context: CallbackContext):
     chat_id = update.message.chat.id
+    print(chat_id)
     text = update.message.text
     bot = context.bot
     bot.send_message(chat_id,text)
